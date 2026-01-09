@@ -16,15 +16,12 @@ repositories {
 }
 
 loom {
-    // Dzięki temu src/client/java i src/client/resources działa poprawnie
     splitEnvironmentSourceSets()
 
     mixin {
+        useLegacyMixinAp = true
         defaultRefmapName = "rozszerzitem.refmap.json"
     }
-
-    // Jeśli nie masz access widenera, zostaw zakomentowane
-    // accessWidenerPath = file("src/main/resources/${project.archives_base_name}.accesswidener")
 }
 
 dependencies {
@@ -32,8 +29,8 @@ dependencies {
 
     // Yarn mappings (to naprawia Twoje błędy importów net.minecraft.*)
     mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
-    annotationProcessor "org.spongepowered:mixin:0.8.7:processor"
-    clientAnnotationProcessor "org.spongepowered:mixin:0.8.7:processor"
+    annotationProcessor "org.spongepowered:mixin:0.8.5:processor"
+    clientAnnotationProcessor "org.spongepowered:mixin:0.8.5:processor"
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 }
