@@ -19,20 +19,24 @@ loom {
     splitEnvironmentSourceSets()
 
     mixin {
+        // Loom 1.14.x: mixin AP nie jest już domyślnie włączony
         useLegacyMixinAp = true
+
+        // Nazwa refmapa, która ma się znaleźć w jarze
         defaultRefmapName = "rozszerzitem.refmap.json"
     }
 }
 
 dependencies {
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
-
-    // Yarn mappings (to naprawia Twoje błędy importów net.minecraft.*)
     mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
-    annotationProcessor "org.spongepowered:mixin:0.8.5:processor"
-    clientAnnotationProcessor "org.spongepowered:mixin:0.8.5:processor"
+
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+
+    // Mixin Annotation Processor (generuje refmap)
+    annotationProcessor "org.spongepowered:mixin:0.8.5:processor"
+    clientAnnotationProcessor "org.spongepowered:mixin:0.8.5:processor"
 }
 
 java {
@@ -67,9 +71,5 @@ publishing {
             artifactId = project.archives_base_name
             from components.java
         }
-    }
-
-    repositories {
-        // puste, bo na razie tylko build
     }
 }
