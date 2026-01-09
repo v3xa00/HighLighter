@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "id": "rozszerzitem",
+  "version": "1.0.0",
+  "name": "Rozszerz Item",
+  "description": "Powiększa itemy leżące na ziemi według wartości ustawionej komendą /rozszerz.",
+  "authors": ["you"],
+  "license": "MIT",
+  "environment": "*",
+  "entrypoints": {
+    "main": ["your.package.RozszerzItemMod"],
+    "client": ["your.package.RozszerzItemClient"]
+  },
+  "mixins": [
+    "rozszerzitem.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.15.0",
+    "minecraft": "1.21.x",
+    "fabric-api": "*"
+  }
+}
