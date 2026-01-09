@@ -1,4 +1,4 @@
-package your.package;
+package pl.example;
 
 import com.mojang.brigadier.arguments.DoubleArgumentType;
 import net.fabricmc.api.ModInitializer;
