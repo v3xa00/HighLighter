@@ -1,4 +1,4 @@
-package your.package.mixin;
+package pl.example.mixin;
 
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.ItemEntityRenderer;
