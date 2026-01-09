@@ -8,8 +8,8 @@
   "license": "MIT",
   "environment": "*",
   "entrypoints": {
-    "main": ["your.package.RozszerzItemMod"],
-    "client": ["your.package.RozszerzItemClient"]
+  "main": ["pl.example.RozszerzItemMod"],
+  "client": ["pl.example.RozszerzItemClient"]
   },
   "mixins": [
     "rozszerzitem.mixins.json"
