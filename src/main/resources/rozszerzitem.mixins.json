@@ -1,0 +1,11 @@
+{
+  "required": true,
+  "package": "pl.example.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "client": [
+    "ItemEntityRendererMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
