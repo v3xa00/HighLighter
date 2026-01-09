@@ -19,6 +19,10 @@ loom {
     // Dzięki temu src/client/java i src/client/resources działa poprawnie
     splitEnvironmentSourceSets()
 
+    mixin {
+        defaultRefmapName = "rozszerzitem.refmap.json"
+    }
+
     // Jeśli nie masz access widenera, zostaw zakomentowane
     // accessWidenerPath = file("src/main/resources/${project.archives_base_name}.accesswidener")
 }
