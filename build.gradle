@@ -12,17 +12,24 @@ base {
 
 repositories {
     maven { url = "https://maven.fabricmc.net/" }
+    // TO DODAJ – stąd pobierze org.spongepowered:mixin
+    maven { url = "https://repo.spongepowered.org/repository/maven-public/" }
     mavenCentral()
 }
 
 loom {
     splitEnvironmentSourceSets()
 
-    mixin {
-        // Loom 1.14.x: mixin AP nie jest już domyślnie włączony
-        useLegacyMixinAp = true
+    // (polecane przy splitEnvironmentSourceSets)
+    mods {
+        "rozszerzitem" {
+            sourceSet sourceSets.main
+            sourceSet sourceSets.client
+        }
+    }
 
-        // Nazwa refmapa, która ma się znaleźć w jarze
+    mixin {
+        useLegacyMixinAp = true
         defaultRefmapName = "rozszerzitem.refmap.json"
     }
 }
@@ -34,7 +41,7 @@ dependencies {
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-    // Mixin Annotation Processor (generuje refmap)
+    // Mixin Annotation Processor – generuje refmap
     annotationProcessor "org.spongepowered:mixin:0.8.5:processor"
     clientAnnotationProcessor "org.spongepowered:mixin:0.8.5:processor"
 }
@@ -53,7 +60,6 @@ tasks.withType(JavaCompile).configureEach {
 
 processResources {
     inputs.property "version", project.version
-
     filesMatching("fabric.mod.json") {
         expand "version": project.version
     }
@@ -62,14 +68,5 @@ processResources {
 jar {
     from("LICENSE") {
         rename { "${it}_${project.base.archivesName.get()}" }
-    }
-}
-
-publishing {
-    publications {
-        create("mavenJava", MavenPublication) {
-            artifactId = project.archives_base_name
-            from components.java
-        }
     }
 }
