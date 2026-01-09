@@ -26,12 +26,23 @@ jobs:
       - name: Make Gradle wrapper executable
         run: chmod +x ./gradlew
 
-      - name: Build
-        run: ./gradlew clean build --no-daemon
+      # remapJar gwarantuje “normalny” mod jar (nie dev)
+      - name: Build (including remapJar)
+        run: ./gradlew clean build remapJar --no-daemon
 
-      - name: Upload build artifacts
+      - name: List build outputs
+        run: |
+          echo "== build/libs =="
+          ls -la build/libs || true
+          echo "== build/devlibs =="
+          ls -la build/devlibs || true
+
+      - name: Upload jars (artifacts)
         uses: actions/upload-artifact@v4
         with:
-          name: mod-jars
-          path: build/libs/*.jar
+          name: jars
+          path: |
+            build/libs/*.jar
+            build/devlibs/*.jar
           if-no-files-found: error
+          retention-days: 14
